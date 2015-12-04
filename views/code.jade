@@ -5,7 +5,7 @@ block content
   p If you are interested in seeing code from some of our presentations, please go to our 
     a(href='https://github.com/jaxnode/') GitHub page.
   each repo in repos
-    -if (repo.name.length > 0 && repo.html_url.length > 0)
+    -if (repo.name && repo.name.length > 0 && repo.html_url.length > 0)
       div.panel.panel-primary
         div.panel-heading
           h3= repo.name
@@ -22,6 +22,6 @@ block content
           p 
             strong Default Branch: 
             = repo.default_branch 
-            &nbsp;
+            | &nbsp;
             strong Language: 
             = repo.language
