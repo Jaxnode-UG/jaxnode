@@ -25,12 +25,13 @@ app.get('/', routes.index);
 app.get('/Contact', contact.contact);
 app.get('/Sponsors', sponsors.list);
 app.get('/Code', routes.code);
+app.get('/api', routes.api);
 
 describe("Routes", function() {
   describe("GET Index", function() {
 
     it('responds to /', function testHomepage(done) {
-      this.timeout(5000);
+      this.timeout(10000);
         request(app)
           .get('/')
           .expect('Content-Type', /text\/html/)
@@ -64,6 +65,15 @@ describe("Routes", function() {
       request(app)
       .get('/Code')
       .expect('Content-Type', /text\/html/)
+      .expect(200, done);
+    });
+  });
+  
+  describe('GET Code', function() {
+    it('responds to /api', function testApi(done) {
+      request(app)
+      .get('/api')
+      .expect('Content-Type', /application\/json/)
       .expect(200, done);
     });
   });

@@ -89,7 +89,7 @@ function setTimeToNewYork(meetingArray) {
  */
 exports.index = function(req, res) {
 	var cMeetings = cache.get('nextMeeting');
-	if (cMeetings !== null)
+	if (typeof cMeetings !== 'undefined' && cMeetings !== null)
 	{
         renderIndexWithTweets(res, cMeetings);
 	} else {
@@ -159,3 +159,46 @@ exports.code = function(req, res) {
     -if (repo.html_url.length > 0)
       p= repo.html_url
 */
+
+/*
+ * API Call for next meeting information
+ */
+exports.api = function(req, res) {
+	var cMeetings = cache.get('nextMeeting');
+	if (typeof cMeetings !== 'undefined' && cMeetings !== null)
+	{
+		res.send({ meeting: cMeetings[0] });
+	} else {
+		var sreq = https.request(httpsOptions, function (response) {
+			response.setEncoding('utf8');
+			response.on('data', function (chunk) {
+				console.log('receiving data.');
+				nextMeeting += chunk;
+			});
+			response.on('end', function() {
+				console.log('request has ended.');
+				if (nextMeeting && nextMeeting.toString().slice(0,6) !== "<html>")
+				{
+					var meetingObject = JSON.parse(nextMeeting);
+					var meetingArray = meetingObject.results;
+					setTimeToNewYork(meetingArray);
+					cache.put('nextMeeting', meetingArray, 3600000);
+					nextMeeting = "";
+					console.log(meetingArray);
+					if (typeof meetingArray !== 'undefined') {
+						res.send({ meeting: meetingArray[0] });	
+					} else {
+						res.send({ meeting: {} });	
+					}
+				} else {
+					res.send({ meeting: {} });
+				}
+			});
+		});
+		sreq.on('error', function(e) {
+			console.log('problem with request: ' + e.message);
+		});
+		sreq.write('data\n');
+		sreq.end();
+	}
+}
