@@ -19,7 +19,7 @@ function renderIndexWithTweets(res, meetingArray) {
 		if (err) {
 			console.log('problem with request: ' + err);
 		} else {
-			res.render('index', { title: 'Jax Node User Group', meeting: meetingArray, tweets: results.tweets  });
+			res.render('index', { title: 'JaxNode User Group', meeting: meetingArray, tweets: results.tweets  });
 		}
 	});
 }
