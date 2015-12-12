@@ -17,30 +17,30 @@ block content
         | Node.js is based on the V8 javascript engine in the Chrome browser.
       a(class='btn btn-primary', href='http://www.meetup.com/Jax-Node-js-UG') Join our Meetup
       br
-    if (meetingArray && meetingArray.length > 0)
+    if (meeting)
       div.panel.panel-default
         div.panel-heading
           h3 Next meeting:&nbsp;
-            strong= meetingArray[0].name
+            strong= meeting.name
             // moment(meetingArray[0].time).subtract('hours', 4).format('lll')
-          div= meetingArray[0].time
-          a(class='mu-rsvp-btn', href='#{meetingArray[0].event_url}', data-event='#{meetingArray[0].id}')
+          div= meeting.time
+          a(class='mu-rsvp-btn', href='#{meeting.event_url}', data-event='#{meeting.id}')
             img(src='images/rsvp_btn.png', alt='RSVP')
         div.panel-body
-          div !{meetingArray[0].description}
-          if (meetingArray[0].venue && meetingArray[0].venue.name)
+          div !{meeting.description}
+          if (meeting.venue && meeting.venue.name)
             #map-canvas.pull-left
-            div#addressWell.well.well-lg.pull-left= meetingArray[0].venue.name
+            div#addressWell.well.well-lg.pull-left= meeting.venue.name
               br
-              if (meetingArray[0].venue && meetingArray[0].venue.address_1)
-                = meetingArray[0].venue.address_1
+              if (meeting.venue && meeting.venue.address_1)
+                = meeting.venue.address_1
                 br
-              if (meetingArray[0].venue && meetingArray[0].venue.city)
-                = meetingArray[0].venue.city
-              if (meetingArray[0].venue && meetingArray[0].venue.state)
-                = ', ' + meetingArray[0].venue.state
-              if (meetingArray[0].venue && meetingArray[0].venue.zip)
-                = ' ' + meetingArray[0].venue.zip
+              if (meeting.venue && meeting.venue.city)
+                = meeting.venue.city
+              if (meeting.venue && meeting.venue.state)
+                = ', ' + meeting.venue.state
+              if (meeting.venue && meeting.venue.zip)
+                = ' ' + meeting.venue.zip
       br
       small
   .col-md-4
@@ -54,11 +54,11 @@ block content
             span.list-group-item-text !{tweet.text}
 
 block append scripts
-    if (meetingArray && meetingArray[0] && meetingArray[0].venue && meetingArray[0].venue.lat && meetingArray[0].venue.lon)
+    if (meeting && meeting.venue && meeting.venue.lat && meeting.venue.lon)
       script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBV9EuRsK_Eg7rzF-zA4ARVrNyPsfKOV_s&sensor=false')
       script.
         function initialize() {
-            var myLatlng = new google.maps.LatLng(#{meetingArray[0].venue.lat}, #{meetingArray[0].venue.lon});
+            var myLatlng = new google.maps.LatLng(#{meeting.venue.lat}, #{meeting.venue.lon});
             var mapOptions = {
             center: myLatlng,
             zoom: 15,
@@ -68,10 +68,10 @@ block append scripts
             var marker = new google.maps.Marker({
             position: myLatlng,
             map: map,
-            title:"#{meetingArray[0].venue.name}"
+            title:"#{meeting.venue.name}"
           });
           var infowindow = new google.maps.InfoWindow({
-            content: '<div>#{meetingArray[0].venue.name}</div>'
+            content: '<div>#{meeting.venue.name}</div>'
           });
           google.maps.event.addListener(marker, 'click', function() {
             infowindow.open(map,marker);

@@ -70,6 +70,7 @@ describe("Routes", function() {
   });
   
   describe('GET Code', function() {
+    this.timeout(10000);
     it('responds to /api', function testApi(done) {
       request(app)
       .get('/api')
