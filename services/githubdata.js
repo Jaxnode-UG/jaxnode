@@ -30,11 +30,7 @@ GitHubData.prototype.getCode = function getCode(cb) {
 			reposText += chunk;
 		});
 		response.on('end', function() {
-			console.log('request has ended.');
-			//console.log(reposText);
 			var reposArray =  JSON.parse(reposText);
-			//console.log(reposArray);
-			//, repos: reposArray 
 			cb(null, { repos: reposArray })	
 		});
 	});

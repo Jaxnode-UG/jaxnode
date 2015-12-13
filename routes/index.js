@@ -1,47 +1,29 @@
-
+"use strict";
 /*
  * GET home page.
  */
 
-var https = require('https'),
-	GitHubData = require('../services/githubdata.js'),
-	twitterdata = require('../services/twitterdata.js'),
-	meetupdata = require('../services/meetupdata.js'),
-	servicefactory = require('../services/jaxnode-service.js');
-	
-var Service = servicefactory(meetupdata, twitterdata); 
+var IndexRouter = function IndexRouter() { };
 
-/*
- * Render Index with Tweets.
- */
-function renderIndexWithTweets(res, meetingArray) {
-    Service.getTweets(function callback(err, results) {
+IndexRouter.prototype.index = function index(req, res) {
+	req.service.getNextMeetup(function callback(err, results) {
 		if (err) {
 			console.log('problem with request: ' + err);
 		} else {
-			res.render('index', { title: 'JaxNode User Group', meeting: meetingArray, tweets: results.tweets  });
-		}
-	});
-}
-
-/*
- * Setting up index route.
- */
-exports.index = function(req, res) {
-	Service.getNextMeetup(function callback(err, results) {
-		if (err) {
-			console.log('problem with request: ' + err);
-		} else {
-			renderIndexWithTweets(res, results);
+			var meetingArray = results;
+			req.service.getTweets(function callback(err, tweetResults) {
+				if (err) {
+					console.log('problem with request: ' + err);
+				} else {
+					res.render('index', { title: 'JaxNode User Group', meeting: meetingArray, tweets: tweetResults.tweets  });
+				}
+			});
 		}
 	});
 };
 
-/*
- * Setting up link to GitHub
- */
-exports.code = function(req, res) {
-	GitHubData.getCode(function callback(err, results) {
+IndexRouter.prototype.code = function code(req, res) {
+	req.GitHubData.getCode(function callback(err, results) {
 		if (err) {
 			console.log('problem with request: ' + err);
 		} else {
@@ -50,16 +32,15 @@ exports.code = function(req, res) {
 	});
 };
 
-
-/*
- * API Call for next meeting information
- */
-exports.api = function(req, res) {
-	Service.getNextMeetup(function callback(err, results) {
+IndexRouter.prototype.api = function api(req, res) {
+	//console.log(req.service);	
+	req.service.getNextMeetup(function callback(err, results) {
 		if (err) {
 			console.log('problem with request: ' + err);
 		} else {
 			res.send({ meeting: results });	
 		}
 	});
-}
+};
+
+module.exports = new IndexRouter();

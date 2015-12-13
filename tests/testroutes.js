@@ -7,6 +7,13 @@ var express = require('express');
 var routes = require('../routes');
 var contact = require('../routes/contact');
 var sponsors = require('../routes/sponsors');
+var getApps = require('../routes/appcontroller.js');
+
+var twitterdata = require('../services/twitterfake.js');
+var meetupdata = require('../services/meetupfake.js');
+var githubData = require('../services/githubfake.js');
+var servicefactory = require('../services/jaxnode-service.js');
+var service = servicefactory(meetupdata, twitterdata);
 var path = require('path');
 
 var expect = chai.expect;
@@ -21,31 +28,24 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
 
-app.get('/', routes.index);
+var exposeService = function(req, resp, next){
+    req.service = service;
+    req.GitHubData = githubData;
+    next();
+};
+
+app.get('/', exposeService, routes.index);
 app.get('/Contact', contact.contact);
 app.get('/Sponsors', sponsors.list);
-app.get('/Code', routes.code);
-app.get('/api', routes.api);
+app.get('/Code', exposeService, routes.code);
+app.get('/api', exposeService, routes.api);
 
 describe("Routes", function() {
   describe("GET Index", function() {
 
     it('responds to /', function testHomepage(done) {
-      this.timeout(10000);
-        request(app)
-          .get('/')
-          .expect('Content-Type', /text\/html/)
-          .expect(200)
-          .end(function(err, res){
-            done(err);
-          });
-    });
-  });
-  
-  describe('GET Sponsors', function() {
-    it('responds to /Sponsors', function testSponsors(done) {
       request(app)
-      .get('/Sponsors')
+      .get('/')
       .expect('Content-Type', /text\/html/)
       .expect(200, done);
     });
@@ -53,15 +53,19 @@ describe("Routes", function() {
   
   describe('GET Contact Us', function() {
     it('responds to /Contact', function testContactUs(done) {
-      request(app)
-      .get('/Contact')
-      .expect('Content-Type', /text\/html/)
-      .expect(200, done);
+      var req, res, spy;
+
+        req = res = {};
+        spy = res.render = sinon.spy();
+        contact.contact(req, res);
+        expect(spy.calledOnce).to.equal(true);
+        done();
     });
   });
   
   describe('GET Code', function() {
     it('responds to /Code', function testCode(done) {
+      this.timeout(10000);
       request(app)
       .get('/Code')
       .expect('Content-Type', /text\/html/)
@@ -69,7 +73,7 @@ describe("Routes", function() {
     });
   });
   
-  describe('GET Code', function() {
+  describe('GET Api', function() {
     this.timeout(10000);
     it('responds to /api', function testApi(done) {
       request(app)
@@ -78,4 +82,31 @@ describe("Routes", function() {
       .expect(200, done);
     });
   });
+ 
+  describe('GET Sponsors', function() {
+    it('responds to /Sponsors', function testSponsors(done) {
+      var req, res, spy;
+
+        req = res = {};
+        spy = res.render = sinon.spy();
+        sponsors.list(req, res);
+        expect(spy.calledOnce).to.equal(true);
+        done();
+    });
+  });
+  
+  describe('GET Apps', function() {
+    this.timeout(10000);
+    it('responds to /Apps', function testApi(done) {
+      var req,res,spy;
+
+        req = res = {};
+        spy = res.send = sinon.spy();
+
+        getApps(req, res);
+        expect(spy.calledOnce).to.equal(true);
+        done();
+    });
+  });
+  
 });

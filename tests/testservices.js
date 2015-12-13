@@ -16,7 +16,6 @@ describe("Services", function() {
   	it('Grab twitter feed', function getTweets(done) {
       servicefake.getTweets(function (err, results) {
         if (err) return done(err);
-        console.log(results.tweets[0].name);
         assert('jaxnode' === results.tweets[0].name);
         done();
       });

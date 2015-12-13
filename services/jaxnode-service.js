@@ -1,6 +1,5 @@
 "use strict";
 
-// TODO: modurualize the data to make the testing faster
 var Service = function Service(meetupdata, twitterdata) {
 	this.Meetup = meetupdata;
 	this.Twitter = twitterdata;

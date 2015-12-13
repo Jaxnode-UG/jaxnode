@@ -21,7 +21,6 @@ var httpsOptions = {
  */
 function setTimeToNewYork(meetingArray) {
 	if (meetingArray && meetingArray.length > 0) {
-		console.log(meetingArray[0].time);
 		var currTime = moment(meetingArray[0].time).utc().clone();
 		meetingArray[0].time = currTime.tz("America/New_York").format("lll");	
 	}
@@ -33,11 +32,9 @@ MeetupData.prototype.getNextMeetup = function getNextMeetup(cb) {
 	var sreq = https.request(httpsOptions, function (response) {
 		response.setEncoding('utf8');
 		response.on('data', function (chunk) {
-			console.log('receiving data.');
 			nextMeeting += chunk;
 		});
 		response.on('end', function() {
-			console.log('request has ended.');
 			var err = false;
 			if (nextMeeting && nextMeeting.toString().slice(0,6) !== "<html>")
 			{
