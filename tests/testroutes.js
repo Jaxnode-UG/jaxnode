@@ -42,7 +42,6 @@ app.get('/api', exposeService, routes.api);
 
 describe("Routes", function() {
   describe("GET Index", function() {
-
     it('responds to /', function testHomepage(done) {
       request(app)
       .get('/')
@@ -53,13 +52,10 @@ describe("Routes", function() {
   
   describe('GET Contact Us', function() {
     it('responds to /Contact', function testContactUs(done) {
-      var req, res, spy;
-
-        req = res = {};
-        spy = res.render = sinon.spy();
-        contact.contact(req, res);
-        expect(spy.calledOnce).to.equal(true);
-        done();
+      request(app)
+      .get('/Contact')
+      .expect('Content-Type', /text\/html/)
+      .expect(200, done);
     });
   });
   
@@ -85,18 +81,14 @@ describe("Routes", function() {
  
   describe('GET Sponsors', function() {
     it('responds to /Sponsors', function testSponsors(done) {
-      var req, res, spy;
-
-        req = res = {};
-        spy = res.render = sinon.spy();
-        sponsors.list(req, res);
-        expect(spy.calledOnce).to.equal(true);
-        done();
+      request(app)
+      .get('/Sponsors')
+      .expect('Content-Type', /text\/html/)
+      .expect(200, done);
     });
   });
   
   describe('GET Apps', function() {
-    this.timeout(10000);
     it('responds to /Apps', function testApi(done) {
       var req,res,spy;
 

@@ -3,9 +3,7 @@
  * GET home page.
  */
 
-var IndexRouter = function IndexRouter() { };
-
-IndexRouter.prototype.index = function index(req, res) {
+exports.index = function index(req, res) {
 	req.service.getNextMeetup(function callback(err, results) {
 		if (err) {
 			console.log('problem with request: ' + err);
@@ -22,7 +20,7 @@ IndexRouter.prototype.index = function index(req, res) {
 	});
 };
 
-IndexRouter.prototype.code = function code(req, res) {
+exports.code = function code(req, res) {
 	req.GitHubData.getCode(function callback(err, results) {
 		if (err) {
 			console.log('problem with request: ' + err);
@@ -32,7 +30,7 @@ IndexRouter.prototype.code = function code(req, res) {
 	});
 };
 
-IndexRouter.prototype.api = function api(req, res) {
+exports.api = function api(req, res) {
 	//console.log(req.service);	
 	req.service.getNextMeetup(function callback(err, results) {
 		if (err) {
@@ -42,5 +40,3 @@ IndexRouter.prototype.api = function api(req, res) {
 		}
 	});
 };
-
-module.exports = new IndexRouter();
