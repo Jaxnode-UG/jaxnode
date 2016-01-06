@@ -1,28 +1,34 @@
 {
   "name": "jaxnode",
-  "version": "1.2.1",
+  "version": "2.0.0",
   "private": true,
-  "main": "app.js",
+  "main": "./bin/www",
   "scripts": {
-    "start": "node app.js",
+    "start": "node ./bin/www",
     "test": "mocha tests/*.js"
   },
   "dependencies": {
-    "async": "~0.9.0",
-    "express": "3.4.0",
-    "jade": "~1.5.0",
-    "memory-cache": "0.0.5",
-    "moment-timezone": "^0.3.1",
-    "twitter": "~0.2.9",
-    "util": "~0.10.3"
+    "async": "^1.5.1",
+    "body-parser": "~1.13.2",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "express-hbs": "^0.8.4",
+    "hbs": "~3.1.0",
+    "memory-cache": "^0.1.4",
+    "moment-timezone": "^0.5.0",
+    "morgan": "~1.6.1",
+    "serve-favicon": "~2.3.0",
+    "twitter": "^1.2.5",
+    "util": "^0.10.3"
   },
   "devDependencies": {
-    "chai": "^3.0.0",
-    "mocha": "^2.2.5",
-    "sinon": "^1.15.3",
-    "supertest": "^1.0.1"
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4",
+    "sinon": "^1.17.2",
+    "supertest": "^1.1.0"
   },
   "engines": {
-    "node": "4.2.3"
+    "node": "4.2.4"
   }
 }

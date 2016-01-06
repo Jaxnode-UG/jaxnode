@@ -35,7 +35,8 @@ TwitterData.prototype.getFeed = function getFeed(cb) {
     {
         cb(null, { tweets: cTweets });
     } else {
-        twit.get('/statuses/user_timeline.json', {include_entities:true}, function(data) {
+        var params = {include_entities: true};
+        twit.get('/statuses/user_timeline', params, function(err, data, response) {
             async.map(data, gatherTweets, function(err, results) {
                 cache.put('Tweets', results, 3600000);
                 cb(null, { tweets: results });

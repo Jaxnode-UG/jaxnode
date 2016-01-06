@@ -1,13 +1,15 @@
-/// <reference path="../typings/mocha/mocha.d.ts"/>
 "use strict";
 var sinon = require('sinon');
 var chai = require('chai');
 var request = require('supertest');
 var express = require('express');
-var routes = require('../routes');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+
+var routes = require('../routes/index');
 var contact = require('../routes/contact');
 var sponsors = require('../routes/sponsors');
-var getApps = require('../routes/appcontroller.js');
 
 var twitterdata = require('../services/twitterfake.js');
 var meetupdata = require('../services/meetupfake.js');
@@ -20,13 +22,29 @@ var expect = chai.expect;
 
 
 var app = express();
+var hbs = require('express-hbs');
+
+hbs.registerHelper('activeMenu', function(route, name, test, title) {
+  if (test === title) {
+    return new hbs.SafeString(
+        "<li class='active'><a href='" + route + "'>" + name + "</a></li>"
+    );    
+  } else {
+    return new hbs.SafeString(
+        "<li><a href='" + route + "'>" + name + "</a></li>"
+    );
+  }
+});
+
 app.set('port', process.env.PORT || 3000);
+app.engine('hbs', hbs.express4());
+app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, '../views'));
-app.set('view engine', 'jade');
-app.use(express.logger('dev'));
-app.use(express.bodyParser());
-app.use(express.methodOverride());
-app.use(app.router);
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
 var exposeService = function(req, resp, next){
     req.service = service;
@@ -34,11 +52,11 @@ var exposeService = function(req, resp, next){
     next();
 };
 
-app.get('/', exposeService, routes.index);
-app.get('/Contact', contact.contact);
-app.get('/Sponsors', sponsors.list);
-app.get('/Code', exposeService, routes.code);
-app.get('/api', exposeService, routes.api);
+app.use('/', exposeService, routes);
+//app.get('/Contact', contact.contact);
+//app.get('/Sponsors', sponsors.list);
+//app.get('/Code', exposeService, routes.code);
+//app.get('/api', exposeService, routes.api);
 
 describe("Routes", function() {
   describe("GET Index", function() {
@@ -85,19 +103,6 @@ describe("Routes", function() {
       .get('/Sponsors')
       .expect('Content-Type', /text\/html/)
       .expect(200, done);
-    });
-  });
-  
-  describe('GET Apps', function() {
-    it('responds to /Apps', function testApi(done) {
-      var req,res,spy;
-
-        req = res = {};
-        spy = res.send = sinon.spy();
-
-        getApps(req, res);
-        expect(spy.calledOnce).to.equal(true);
-        done();
     });
   });
   

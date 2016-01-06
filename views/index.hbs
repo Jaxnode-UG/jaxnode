@@ -1,0 +1,85 @@
+{{!< LAYOUT}}
+<style type="text/css">
+    #map-canvas { height: 300px; width: 425px; }
+    .list-group-item:first-child { background-color: #55ACEE; color: white; }
+    .list-group-item:first-child:hover { background-color: #55ACEE; color: white; }
+    .list-group-item:first-child a { color: white; }
+    .list-group-item:hover { background-color: #f5f5f5; }
+    #addressWell { margin: 15px; }
+</style>
+
+<div class="col-md-8">
+    <div class="jumbotron">
+        <img src="images/jaxnodejs.png" alt="Jax Node Logo" class="img-responsive">
+        <h2>Welcome to the JaxNode User Group</h2>
+        <p>The Jacksonville Node.js and Javascript User Group is for anyone interested in learning more about Node.js and JavaScript.
+            JavaScript was originally created for scripting web browsers, but now JavaScript applications 
+            run on the server, desktop and even robots.</p><p>Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js uses an event-driven, 
+            non-blocking I/O model that makes it lightweight and efficient. 
+        </p>
+        <a href="http://www.meetup.com/Jax-Node-js-UG" class="btn btn-primary">Join our Meetup</a><br>
+    </div>
+    {{#if displayMeetup}}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>Next meeting:&nbsp;<strong>{{meeting.name}}</strong><!-- moment(meetingArray[0].time).subtract('hours', 4).format('lll')--></h3>
+            <div>{{meeting.time}}</div>
+            <a href='{{meeting.event_url}}' data-event='{{meeting.id}}' class='mu-rsvp-btn'><img src="images/rsvp_btn.png" alt="RSVP"></a>
+        </div>
+        <div class="panel-body">
+            <div>
+                {{{meeting.description}}}
+            </div>
+            <div id="map-canvas" class="pull-left"></div>
+            <div id="addressWell" class="well well-lg pull-left">
+                {{meeting.venue.name}}<br>
+                {{meeting.venue.address_1}}<br />
+                {{meeting.venue.city}}, {{meeting.venue.state}} {{meeting.venue.zip}}
+            </div>
+        </div>
+    </div>
+    <br>
+    <small></small>
+    {{/if}}
+</div>
+<div class="col-md-4">
+    {{#if displayTweets}}
+    <ul class="list-group">
+        <li class="list-group-item">
+            <img src="/images/Twitter_logo_white_sm.png">
+            <a href="https://twitter.com/jaxnode" alt="JaxNode on Twitter">@Jaxnode</a> on Twitter</li>
+            {{#each tweets}}
+            <li class="list-group-item"><span class="list-group-item-text">{{{this.text}}}</span></li>
+            {{/each}}
+    </ul>
+    {{/if}}
+</div>
+
+{{#contentFor "pageScripts"}}
+  {{#if displayMeetup}}
+  <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBV9EuRsK_Eg7rzF-zA4ARVrNyPsfKOV_s&sensor=false'></script>
+  <script type="text/javascript">
+    function initialize() {
+          var myLatlng = new google.maps.LatLng({{meeting.venue.lat}}, {{meeting.venue.lon}});
+            var mapOptions = {
+            center: myLatlng,
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+          var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+            var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title:"#{meeting.venue.name}"
+          });
+          var infowindow = new google.maps.InfoWindow({
+            content: '<div>#{meeting.venue.name}</div>'
+          });
+          google.maps.event.addListener(marker, 'click', function() {
+            infowindow.open(map,marker);
+          });
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
+  {{/if}}
+{{/contentFor}}

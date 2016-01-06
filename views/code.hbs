@@ -1,0 +1,29 @@
+{{!< LAYOUT}}
+<h1>{{title}}</h1>
+<p>If you are interested in seeing code from some of our presentations, please go to our 
+    <a href='https://github.com/jaxnode/'>GitHub page.</a>
+</p>
+
+    {{#each repos}}
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3>{{this.name}}</h3>
+            </div>
+            <div class="panel panel-body">
+                <a href="{{this.html_url}}">{{this.html_url}}</a>
+                <br /> 
+                <br />     
+                {{this.description}}
+                You can install the following repo by typing the following command in your terminal
+                <br /> 
+                <br /> 
+                <blockquote>
+                    <p>git clone {{this.clone_url}}</p>
+                </blockquote>
+                <p>
+                    <strong>Default Branch: {{this.default_branch}}</strong>&nbsp;
+                    <strong> Language: {{this.language}} </strong>        
+                </p>
+            </div>
+        </div>
+    {{/each}}

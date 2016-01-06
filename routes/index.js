@@ -1,42 +1,14 @@
-"use strict";
-/*
- * GET home page.
- */
+var express = require('express');
+var indexRoutes = require('./index-route-functions');
+var sponsors = require('./sponsors');
+var contact = require('./contact');
+var router = express.Router();
 
-exports.index = function index(req, res) {
-	req.service.getNextMeetup(function callback(err, results) {
-		if (err) {
-			console.log('problem with request: ' + err);
-		} else {
-			var meetingArray = results;
-			req.service.getTweets(function callback(err, tweetResults) {
-				if (err) {
-					console.log('problem with request: ' + err);
-				} else {
-					res.render('index', { title: 'JaxNode User Group', meeting: meetingArray, tweets: tweetResults.tweets  });
-				}
-			});
-		}
-	});
-};
+/* GET home page. */
+router.get('/', indexRoutes.index);
+router.get('/contact', contact);
+router.get('/sponsors', sponsors.list);
+router.get('/api', indexRoutes.api);
+router.get('/code', indexRoutes.code);
 
-exports.code = function code(req, res) {
-	req.GitHubData.getCode(function callback(err, results) {
-		if (err) {
-			console.log('problem with request: ' + err);
-		} else {
-			res.render('code', { title: 'Jax Node GitHub code', repos: results.repos });
-		}
-	});
-};
-
-exports.api = function api(req, res) {
-	//console.log(req.service);	
-	req.service.getNextMeetup(function callback(err, results) {
-		if (err) {
-			console.log('problem with request: ' + err);
-		} else {
-			res.send({ meeting: results });	
-		}
-	});
-};
+module.exports = router;
