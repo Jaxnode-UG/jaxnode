@@ -1,10 +1,11 @@
 {
   "name": "jaxnode",
-  "version": "2.0.0",
+  "version": "2.0.5",
   "private": true,
   "main": "./bin/www",
   "scripts": {
     "start": "node ./bin/www",
+    "mon": "nodemon ./bin/www",
     "test": "mocha tests/*.js"
   },
   "dependencies": {

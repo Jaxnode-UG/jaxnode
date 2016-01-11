@@ -1,0 +1,10 @@
+[
+    {
+        "title": "JaxNodeNext",
+        "description": "A command line tool for checking on the next jaxnode meeting. This tool can be used to find the next jaxnode meeting. Simply type 'jnn' into your console to find out when and where the next JaxNode meeting will take place.",
+        "githuburl": "https://github.com/davidfekke/jaxnodenext",
+        "npmname": "jaxnodenext",
+        "howtoinstall": "npm install -g jaxnodenext",
+        "heroimage": "https://raw.githubusercontent.com/davidfekke/jaxnodenext/master/jaxnodesnap.png"
+    }
+]

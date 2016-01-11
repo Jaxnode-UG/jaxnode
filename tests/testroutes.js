@@ -8,6 +8,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('../routes/index');
+var routesForApps = require('../routes/appsroutes');
 var contact = require('../routes/contact');
 var sponsors = require('../routes/sponsors');
 
@@ -20,21 +21,10 @@ var path = require('path');
 
 var expect = chai.expect;
 
-
 var app = express();
 var hbs = require('express-hbs');
-
-hbs.registerHelper('activeMenu', function(route, name, test, title) {
-  if (test === title) {
-    return new hbs.SafeString(
-        "<li class='active'><a href='" + route + "'>" + name + "</a></li>"
-    );    
-  } else {
-    return new hbs.SafeString(
-        "<li><a href='" + route + "'>" + name + "</a></li>"
-    );
-  }
-});
+var hbsHelpers = require('../services/hbsHelpers.js');
+hbsHelpers(hbs);
 
 app.set('port', process.env.PORT || 3000);
 app.engine('hbs', hbs.express4());
@@ -53,10 +43,7 @@ var exposeService = function(req, resp, next){
 };
 
 app.use('/', exposeService, routes);
-//app.get('/Contact', contact.contact);
-//app.get('/Sponsors', sponsors.list);
-//app.get('/Code', exposeService, routes.code);
-//app.get('/api', exposeService, routes.api);
+app.use('/apps', routesForApps);
 
 describe("Routes", function() {
   describe("GET Index", function() {
@@ -103,6 +90,33 @@ describe("Routes", function() {
       .get('/Sponsors')
       .expect('Content-Type', /text\/html/)
       .expect(200, done);
+    });
+  });
+  
+  describe('GET Apps', function() {
+    it('responds to /Apps', function testApps(done) {
+      request(app)
+      .get('/apps')
+      .expect('Content-Type', /text\/html/)
+      .expect(200, done);
+    });
+  });
+  
+  describe('GET App JaxNodeNext', function() {
+    it('responds to /Apps/JaxNodeNext', function testAppJaxNodeNext(done) {
+      request(app)
+      .get('/apps/JaxNodeNext')
+      .expect('Content-Type', /text\/html/)
+      .expect(200, done);
+    });
+  });
+  
+  describe('GET App NonExistent', function() {
+    it('responds to /Apps/NonExistent', function testAppJaxNodeNext(done) {
+      request(app)
+      .get('/apps/NonExistent')
+      .expect('Content-Type', /text\/html/)
+      .expect(404, done);
     });
   });
   

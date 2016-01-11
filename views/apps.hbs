@@ -1,0 +1,21 @@
+{{!< LAYOUT}}
+<h1>{{title}}</h1>
+
+<div class="col-md-12">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each data}}
+                <tr>
+                    <td><a href="/apps/{{this.title}}">{{this.title}}</a></td>
+                    <td>{{this.description}}</td>    
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

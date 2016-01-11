@@ -6,6 +6,8 @@ var meetupfake = require('../services/meetupfake.js');
 var githubdata = require('../services/githubfake.js');
 var factory = require('../services/jaxnode-service.js');
 var servicefake = factory(meetupfake, twitterfake);
+var path = require('path'); 
+var appdata = require(path.join(__dirname, '../data/apps.json'));
 var mocha = require('mocha');
 var chai = require('chai');
 
@@ -42,4 +44,17 @@ describe("Services", function() {
       });
     });
   });
+  
+  describe("GET App data", function() {
+  	it('Grab data from file', function getDataFromFile(done) {
+      var selectedApp = appdata.filter(n => n.title === 'JaxNodeNext');
+      if (selectedApp[0] === undefined || selectedApp.length !== 1) {
+          done('No results returned');
+      } else {
+          assert(selectedApp[0].title === 'JaxNodeNext');
+          done();
+      }
+    });
+  });
+  
 });

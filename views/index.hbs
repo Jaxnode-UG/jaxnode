@@ -17,7 +17,20 @@
             run on the server, desktop and even robots.</p><p>Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js uses an event-driven, 
             non-blocking I/O model that makes it lightweight and efficient. 
         </p>
-        <a href="http://www.meetup.com/Jax-Node-js-UG" class="btn btn-primary">Join our Meetup</a><br>
+        <a href="http://www.meetup.com/Jax-Node-js-UG" class="btn btn-primary">Join our Meetup</a>
+        <br />
+        <br />
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>
+                    Follow us on Twitter or GitHub.
+                </p>
+                    <a href="https://twitter.com/jaxnode" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @jaxnode</a>
+                    <a class="github-button" href="https://github.com/jaxnode" data-style="mega" data-count-href="/jaxnode/followers" data-count-api="/users/jaxnode#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @jaxnode on GitHub">Follow @jaxnode</a>
+                
+            </div>
+        </div>
+        
     </div>
     {{#if displayMeetup}}
     <div class="panel panel-default">
@@ -82,4 +95,6 @@
         google.maps.event.addDomListener(window, 'load', initialize);
   </script>
   {{/if}}
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
 {{/contentFor}}
