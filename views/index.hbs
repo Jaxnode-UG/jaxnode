@@ -1,6 +1,6 @@
 {{!< LAYOUT}}
 <style type="text/css">
-    #map-canvas { height: 300px; width: 425px; }
+    #map-canvas { height: 300px; width: 100%; } /* width: 425px; */
     .list-group-item:first-child { background-color: #55ACEE; color: white; }
     .list-group-item:first-child:hover { background-color: #55ACEE; color: white; }
     .list-group-item:first-child a { color: white; }
@@ -83,10 +83,10 @@
             var marker = new google.maps.Marker({
             position: myLatlng,
             map: map,
-            title:"#{meeting.venue.name}"
+            title:"{{{meeting.venue.name}}}"
           });
           var infowindow = new google.maps.InfoWindow({
-            content: '<div>#{meeting.venue.name}</div>'
+            content: '<div>{{meeting.venue.name}}</div>'
           });
           google.maps.event.addListener(marker, 'click', function() {
             infowindow.open(map,marker);
