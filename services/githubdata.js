@@ -16,12 +16,10 @@ var gitHubOptions = {
 	}
 };
 
-var GitHubData = function GitHubData() {};
-
 /*
  * Setting up link to GitHub
  */
-GitHubData.prototype.getCode = function getCode(cb) {
+function getCode(cb) {
 	var reposText = "";
 	var githubReq = https.request(gitHubOptions, function(response) {
 		response.setEncoding('utf8');
@@ -42,4 +40,4 @@ GitHubData.prototype.getCode = function getCode(cb) {
 	githubReq.end();
 };
 
-module.exports = new GitHubData();
+module.exports = getCode;

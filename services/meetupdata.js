@@ -26,9 +26,7 @@ function setTimeToNewYork(meetingArray) {
 	}
 }
 
-var MeetupData = function MeetupData() {};
-
-MeetupData.prototype.getNextMeetup = function getNextMeetup(cb) {
+function getNextMeetup(cb) {
 	var sreq = https.request(httpsOptions, function (response) {
 		response.setEncoding('utf8');
 		response.on('data', function (chunk) {
@@ -62,4 +60,4 @@ MeetupData.prototype.getNextMeetup = function getNextMeetup(cb) {
 	sreq.end();
 };
 
-module.exports = new MeetupData();
+module.exports = getNextMeetup;

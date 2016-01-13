@@ -1,20 +1,10 @@
 "use strict";
 
-var Service = function Service(meetupdata, twitterdata) {
-	this.Meetup = meetupdata;
-	this.Twitter = twitterdata;
+function Service(meetupdata, twitterdata) {
+	return {
+        getNextMeetup: meetupdata,
+        getTweets: twitterdata
+    }
 }
 
-Service.prototype.getNextMeetup = function getNextMeetup(cb) {
-	this.Meetup.getNextMeetup(cb);
-};
-
-Service.prototype.getTweets = function getTweets(cb) {
-	this.Twitter.getFeed(cb);
-};
-
-function create(meetupdata, twitterdata) {
-	return new Service(meetupdata, twitterdata); 
-}
-
-module.exports = create;
+module.exports = Service;

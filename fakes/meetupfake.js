@@ -1,8 +1,6 @@
 "use strict";
 
-var MeetupData = function MeetupData() {};
-
-MeetupData.prototype.getNextMeetup = function getNextMeetup(cb) {
+function getNextMeetup(cb) {
 	var err = false;
 	var results = { utc_offset: -18000000,
 				venue: 
@@ -41,4 +39,4 @@ MeetupData.prototype.getNextMeetup = function getNextMeetup(cb) {
 	 cb(err, results);
 };
 
-module.exports = new MeetupData();
+module.exports = getNextMeetup;

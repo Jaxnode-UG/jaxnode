@@ -27,9 +27,7 @@ function gatherTweets(item, callback) {
     callback(null, { text: twitterText, icon: item.user.profile_image_url, name: item.user.screen_name });
 }
 
-var TwitterData = function TwitterData() {};
-
-TwitterData.prototype.getFeed = function getFeed(cb) {
+function getFeed(cb) {
     var cTweets = cache.get('Tweets');
     if (cTweets !== null)
     {
@@ -45,4 +43,4 @@ TwitterData.prototype.getFeed = function getFeed(cb) {
     }
 };
  
-module.exports = new TwitterData();
+module.exports = getFeed;

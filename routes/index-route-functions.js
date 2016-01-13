@@ -24,7 +24,7 @@ exports.index = function index(req, res) {
 };
 
 exports.code = function code(req, res) {
-	req.GitHubData.getCode(function callback(err, results) {
+	req.getCode(function callback(err, results) {
 		if (err) {
 			console.log('problem with request: ' + err);
 		} else {

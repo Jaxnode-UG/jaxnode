@@ -12,9 +12,9 @@ var routesForApps = require('../routes/appsroutes');
 var contact = require('../routes/contact');
 var sponsors = require('../routes/sponsors');
 
-var twitterdata = require('../services/twitterfake.js');
-var meetupdata = require('../services/meetupfake.js');
-var githubData = require('../services/githubfake.js');
+var twitterdata = require('../fakes/twitterfake.js');
+var meetupdata = require('../fakes/meetupfake.js');
+var githubData = require('../fakes/githubfake.js');
 var servicefactory = require('../services/jaxnode-service.js');
 var service = servicefactory(meetupdata, twitterdata);
 var path = require('path');
@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 var exposeService = function(req, resp, next){
     req.service = service;
-    req.GitHubData = githubData;
+    req.getCode = githubData;
     next();
 };
 

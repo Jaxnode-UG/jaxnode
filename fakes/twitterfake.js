@@ -1,8 +1,6 @@
 "use strict";
 
-var TwitterData = function TwitterData() {};
-
-TwitterData.prototype.getFeed = function getFeed(cb) {
+function getFeed(cb) {
 	 var error = null;
 	 var results = { tweets: 
    [ { text: 'Node.js Foundation: Our security process is \'top notch\' <a href="https://t.co/adlVIso1vq">https://t.co/adlVIso1vq</a> via <a href="https://twitter.com/infoworld">@infoworld</a>',
@@ -68,4 +66,4 @@ TwitterData.prototype.getFeed = function getFeed(cb) {
 	 cb(error, results);
 };
  
-module.exports = new TwitterData();
+module.exports = getFeed;

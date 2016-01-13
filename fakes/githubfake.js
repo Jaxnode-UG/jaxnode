@@ -69,10 +69,8 @@ var results = { repos:
        watchers: 0,
        default_branch: 'master' } ] };
        
-var GitHubData = function GitHubData() {};
-
-GitHubData.prototype.getCode = function getCode(cb) {
+function getCode(cb) {
     cb(null, results);
 };
 
-module.exports = new GitHubData();
+module.exports = getCode;
