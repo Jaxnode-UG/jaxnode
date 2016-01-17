@@ -1,4 +1,5 @@
-"use strict";
+/*eslint-disable*/
+'use strict';
 
 function getNextMeetup(cb) {
 	var err = false;

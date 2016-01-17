@@ -1,8 +1,9 @@
+'use strict';
 var express = require('express');
 var indexRoutes = require('./index-route-functions');
 var sponsors = require('./sponsors');
 var contact = require('./contact');
-var router = express.Router();
+var router = express.Router(); // eslint-disable-line
 
 /* GET home page. */
 router.get('/', indexRoutes.index);

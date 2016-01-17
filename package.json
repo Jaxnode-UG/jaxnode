@@ -1,12 +1,12 @@
 {
   "name": "jaxnode",
-  "version": "2.0.8",
+  "version": "2.1.0",
   "private": true,
   "main": "./bin/www",
   "scripts": {
     "start": "node ./bin/www",
     "mon": "nodemon ./bin/www",
-    "test": "mocha tests/*.js"
+    "test": "gulp"
   },
   "dependencies": {
     "async": "^1.5.1",
@@ -27,7 +27,15 @@
     "chai": "^3.4.1",
     "mocha": "^2.3.4",
     "sinon": "^1.17.2",
-    "supertest": "^1.1.0"
+    "supertest": "^1.1.0",
+    "gulp": "^3.6.0",
+    "gulp-coveralls": "^0.1.0",
+    "gulp-eslint": "^1.0.0",
+    "gulp-exclude-gitignore": "^1.0.0",
+    "gulp-istanbul": "^0.9.0",
+    "gulp-mocha": "^2.0.0",
+    "gulp-nsp": "^2.1.0",
+    "gulp-plumber": "^1.0.0"
   },
   "engines": {
     "node": "4.2.4"

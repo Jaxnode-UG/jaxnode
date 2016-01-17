@@ -13,6 +13,11 @@
             "taskName": "start",
             "args": [],
             "isBuildCommand": true
+        },
+        {
+            "taskName": "run",
+            "args": ["mon"],
+            "isBuildCommand": true
         }
     ]
 }

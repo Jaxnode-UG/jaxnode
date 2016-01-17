@@ -1,4 +1,5 @@
-"use strict";
+/*eslint-disable*/
+'use strict';
 
 function getFeed(cb) {
 	 var error = null;

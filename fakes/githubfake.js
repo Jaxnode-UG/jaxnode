@@ -1,4 +1,5 @@
-"use strict";
+/*eslint-disable*/
+'use strict';
 
 var results = { repos: 
    [ { id: 32475224,

@@ -1,10 +1,10 @@
-"use strict";
+'use strict';
 
 function Service(meetupdata, twitterdata) {
-	return {
+    return {
         getNextMeetup: meetupdata,
         getTweets: twitterdata
-    }
+    };
 }
 
 module.exports = Service;
