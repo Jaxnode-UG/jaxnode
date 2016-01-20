@@ -1,5 +1,7 @@
 # Source for JaxNode.com
 
+![JaxNode Logo](https://www.jaxnode.com/images/jaxnodejs.png)
+
 This is the source code for the JaxNode website.
 
 [![Build Status](https://travis-ci.org/davidfekke/jaxnode.svg?branch=release)](https://travis-ci.org/davidfekke/jaxnode)
