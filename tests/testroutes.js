@@ -17,8 +17,7 @@ var path = require('path');
 
 var app = express();
 var hbs = require('express-hbs');
-var hbsHelpers = require('../services/hbsHelpers.js');
-hbsHelpers(hbs);
+require('../services/hbsHelpers.js')(hbs);
 
 app.set('port', process.env.PORT || 3000);
 app.engine('hbs', hbs.express4());
@@ -36,10 +35,16 @@ var exposeService = function (req, resp, next) {
     next();
 };
 
-app.use('/', exposeService, routes);
+var testCookie = function (req, resp, next) {
+    req.cookies.doCodeOnTheBeachOnlyOnce = 'true';
+    next();
+};
+
+app.use('/', exposeService, testCookie, routes);
 app.use('/apps', routesForApps);
 
 describe('Routes', function () {
+
     describe('GET Index', function () {
         it('responds to /', function testHomepage(done) {
             request(app)

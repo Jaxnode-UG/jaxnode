@@ -9,16 +9,15 @@ var routes = require('../routes/index');
 var routesForApps = require('../routes/appsroutes');
 
 var twitterdata = require('../fakes/twittererrorfake.js');
-var meetupdata = require('../fakes/meetuperrorfake.js');
+var meetuperrordata = require('../fakes/meetuperrorfake.js');
 var githubData = require('../fakes/githuberrorfake.js');
 var servicefactory = require('../services/jaxnode-service.js');
-var service = servicefactory(meetupdata, twitterdata);
+var service = servicefactory(meetuperrordata, twitterdata);
 var path = require('path');
 
 var app = express();
 var hbs = require('express-hbs');
-var hbsHelpers = require('../services/hbsHelpers.js');
-hbsHelpers(hbs);
+require('../services/hbsHelpers.js')(hbs);
 
 app.set('port', process.env.PORT || 3000);
 app.engine('hbs', hbs.express4());
@@ -30,21 +29,24 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-var exposeService = function (req, resp, next) {
-    req.service = service;
-    req.getCode = githubData;
-    next();
-};
+describe('Routes with bad data', function () {
 
-app.use('/', exposeService, routes);
-app.use('/apps', routesForApps);
+    before(function () {
+        var exposeService = function (req, resp, next) {
+            req.service = service;
+            req.getCode = githubData;
+            next();
+        };
 
-describe('Routes', function () {
+        app.use('/', exposeService, routes);
+        app.use('/apps', routesForApps);
+    });
+
     describe('GET Index', function () {
         it('responds to /', function testHomepage(done) {
             request(app)
                 .get('/')
-                //.expect('Content-Type', /text\/html/)
+                .expect('Content-Type', /text\/html/)
                 .expect(500, done);
         });
     });
@@ -64,7 +66,7 @@ describe('Routes', function () {
         it('responds to /api', function testApi(done) {
             request(app)
                 .get('/api')
-                //.expect('Content-Type', /application\/json/)
+                .expect('Content-Type', /application\/json/)
                 .expect(500, done);
         });
     });

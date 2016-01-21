@@ -6,7 +6,7 @@
 exports.index = function index(req, res) {
     req.service.getNextMeetup(function callback(err, results) {
         if (err) {
-            console.log('problem with request: ' + err);
+            console.log('problem with meetup request: ' + err);
             res.status(500).render('error', {
                 message: 'No app exists',
                 error: {
@@ -18,7 +18,7 @@ exports.index = function index(req, res) {
             var meetingArray = results;
             req.service.getTweets(function cb(err2, tweetResults) {
                 if (err2) {
-                    console.log('problem with request: ' + err);
+                    console.log('problem with twitter request: ' + err2);
                     res.status(500).render('error', {
                         message: 'No tweets',
                         error: {

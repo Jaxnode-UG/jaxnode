@@ -1,6 +1,6 @@
 {
   "name": "jaxnode",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "private": true,
   "main": "./bin/www",
   "scripts": {
@@ -28,7 +28,7 @@
     "mocha": "^2.3.4",
     "sinon": "^1.17.2",
     "supertest": "^1.1.0",
-    "gulp": "^3.6.0",
+    "gulp": "^3.9.0",
     "gulp-coveralls": "^0.1.0",
     "gulp-eslint": "^1.0.0",
     "gulp-exclude-gitignore": "^1.0.0",

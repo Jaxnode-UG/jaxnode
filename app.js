@@ -18,9 +18,7 @@ var app = express();
 
 // view engine setup
 var hbs = require('express-hbs');
-var hbsHelpers = require('./services/hbsHelpers.js');
-// Moved HandleBars helpers to separate function
-hbsHelpers(hbs);
+require('./services/hbsHelpers.js')(hbs);
 
 // Use `.hbs` for extensions and find partials in `views/partials`.
 app.engine('hbs', hbs.express4());
