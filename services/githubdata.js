@@ -8,7 +8,7 @@ var https = require('https');
 var gitHubOptions = {
     hostname: 'api.github.com',
     port: 443,
-    path: '/users/jaxnode/repos',
+    path: '/orgs/jaxnode-ug/repos',
     method: 'GET',
     headers: {
         Accept: 'application/vnd.github.v3+json',
