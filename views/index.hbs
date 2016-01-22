@@ -61,12 +61,14 @@
             <div>
                 {{{meeting.description}}}
             </div>
+            {{#if displayMap}}
             <div id="map-canvas" class="pull-left"></div>
             <div id="addressWell" class="well well-lg pull-left">
                 {{meeting.venue.name}}<br>
                 {{meeting.venue.address_1}}<br />
                 {{meeting.venue.city}}, {{meeting.venue.state}} {{meeting.venue.zip}}
             </div>
+            {{/if}}
         </div>
     </div>
     <br>
@@ -90,6 +92,7 @@
   {{#if displayMeetup}}
   <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBV9EuRsK_Eg7rzF-zA4ARVrNyPsfKOV_s&sensor=false'></script>
   <script type="text/javascript">
+    {{#if displayMap}}
     function initialize() {
           var myLatlng = new google.maps.LatLng({{meeting.venue.lat}}, {{meeting.venue.lon}});
             var mapOptions = {
@@ -111,6 +114,7 @@
           });
         }
         google.maps.event.addDomListener(window, 'load', initialize);
+    {{/if}}
         
         setTimeout(closeAlert, 10000);
         

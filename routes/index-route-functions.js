@@ -28,6 +28,10 @@ exports.index = function index(req, res) {
                     });
                 } else {
                     var displayMeetup = Object.keys(meetingArray).length !== 0;
+                    console.log(meetingArray.hasOwnProperty('venue'));
+                    if (displayMeetup && meetingArray.hasOwnProperty('venue')) {
+                        var displayMap = Object.keys(meetingArray.venue).length !== 0;
+                    }
                     var displayTweets = tweetResults.tweets.length !== 0;
                     var displayCodeOnTheBeach = true;
                     if (req.cookies.doCodeOnTheBeachOnlyOnce === 'true') {
@@ -38,6 +42,7 @@ exports.index = function index(req, res) {
                         meeting: meetingArray,
                         tweets: tweetResults.tweets,
                         displayMeetup: displayMeetup,
+                        displayMap: displayMap,
                         displayTweets: displayTweets,
                         displayCodeOnTheBeach: displayCodeOnTheBeach
                     });
