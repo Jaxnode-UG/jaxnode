@@ -3,6 +3,7 @@
 var twitterfake = require('../fakes/twitterfake.js');
 var meetupfake = require('../fakes/meetupfake.js');
 var githubdata = require('../fakes/githubfake.js');
+var sponsordata = require('../services/sponsordata.js');
 var factory = require('../services/jaxnode-service.js');
 var servicefake = factory(meetupfake, twitterfake);
 var path = require('path');
@@ -43,7 +44,6 @@ describe('Services', function () {
                     return done(err);
                 }
                 assert(results.repos[0].name === 'gulptest');
-                //console.log(results.repos[0].name);
                 done();
             });
         });
@@ -58,6 +58,21 @@ describe('Services', function () {
                 done('No results returned');
             } else {
                 assert(selectedApp[0].title === 'JaxNodeNext');
+                done();
+            }
+        });
+    });
+
+    describe('GET Sponsor data', function () {
+        it('Grab sponsor data from service.', function getSponsorData(done) {
+            var myData = sponsordata();
+            var selectedSponsor = myData.filter(function (n) {
+                return n.name === 'Availity';
+            });
+            if (selectedSponsor[0] === undefined || selectedSponsor.length !== 1) {
+                done('No results returned');
+            } else {
+                assert(selectedSponsor[0].alt === 'Availity');
                 done();
             }
         });

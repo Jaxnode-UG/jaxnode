@@ -1,0 +1,51 @@
+[
+    {
+        "name": "Pebble",
+        "url": "https://getpebble.com",
+		"alt": "Pebble, #MakeAwesomeHappen",
+        "imagepath": "images/pebble-logo.png",
+        "message": "They make Smartwatches that allows you to write applications in JavaScript!"
+    },
+    {
+        "name": "Interactive Resources",
+        "url": "http://irtalent.com",
+		"alt": "Interactive Resources",
+        "imagepath": "images/interactiveresources.png",
+        "message": "IR is a recruiting company that pays for our food each month. If you are looking switch jobs or find talent, contact Interactive Resources."
+    },
+	{
+		"name": "Jax Tech Meetups",
+		"url": "http://jaxtechmeetups.com",
+		"alt": "Jax Tech Meetups",
+        "imagepath": "images/jaxtechmeetups.png",
+        "message": "A website that lists all of the technical meetups in Jacksonville, Fl."
+	},
+	{
+		"name": "Availity",
+        "url": "http://availity.com",
+		"alt": "Availity",
+        "imagepath": "images/availity_logo.png",
+        "message": "Availity sponsors JaxNode by hosting our monthly meetings."
+	},
+	{
+		"name": "Pluralsight",
+        "url": "http://pluralsight.com",
+		"alt": "pluralsight online training",
+        "imagepath": "images/pluralsight-fullcolor-175x39-v1.png",
+        "message": "Pluralsight offers online interactive technical video training."
+	},
+	{
+		"name": "Electric Imp",
+        "url": "http://electricimp.com",
+		"alt": "Electric Imp",
+        "imagepath": "images/implogodark.png",
+        "message": "The Electric Imp makes a microcontroller board that connects to WiFi."
+	},
+	{
+		"name": "Tessel",
+        "url": "http://tessel.io",
+		"alt": "Tessel",
+        "imagepath": "images/tessel-logo-horizontal.png",
+        "message": "The Tessel is a microcontroller board that connects to WiFi and runs JavaScript and a version of Node.js"
+	}
+]
