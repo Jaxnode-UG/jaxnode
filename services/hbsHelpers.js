@@ -20,6 +20,10 @@ function addHBSHelpers(Handlebars) {
     Handlebars.registerHelper('currentVersion', function () {
         return new Handlebars.SafeString(pkg.version);
     });
+    
+    Handlebars.registerHelper('nodeVersion', function () {
+        return new Handlebars.SafeString('Running on Node ' + process.version);
+    });
 }
 
 module.exports = addHBSHelpers;

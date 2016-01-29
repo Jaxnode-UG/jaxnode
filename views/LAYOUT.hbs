@@ -76,7 +76,14 @@
        <div class="container">
            {{{body}}}
        </div>
-    <footer class="bs-footer"><div class="container"><p>Copyright {{copyrightYear}}, Jax Node User Group. Version {{currentVersion}}</p></div></footer>
+    <footer class="bs-footer">
+        <div class="container">
+            <p class="pull-left">Copyright {{copyrightYear}}, Jax Node User Group. Version {{currentVersion}}</p>
+            <div class="span6 pull-right">
+                {{nodeVersion}}  
+            </div>
+        </div>
+    </footer>
     <script type="text/javascript" src='/js/jquery.min.js'></script>
 	<script type="text/javascript" src='/js/bootstrap.min.js'></script>
     {{{block "pageScripts"}}}
