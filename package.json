@@ -38,6 +38,6 @@
     "gulp-plumber": "^1.0.0"
   },
   "engines": {
-    "node": "4.2.5"
+    "node": "4.2.6"
   }
 }
