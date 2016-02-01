@@ -28,7 +28,6 @@ exports.index = function index(req, res) {
                     });
                 } else {
                     var displayMeetup = Object.keys(meetingArray).length !== 0;
-                    console.log(meetingArray.hasOwnProperty('venue'));
                     if (displayMeetup && meetingArray.hasOwnProperty('venue')) {
                         var displayMap = Object.keys(meetingArray.venue).length !== 0;
                     }
