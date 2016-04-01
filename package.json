@@ -1,6 +1,6 @@
 {
   "name": "jaxnode",
-  "version": "2.1.14",
+  "version": "2.1.15",
   "private": true,
   "main": "./bin/www",
   "scripts": {
@@ -38,6 +38,6 @@
     "gulp-plumber": "^1.0.0"
   },
   "engines": {
-    "node": "4.4.0"
+    "node": "5.10.0"
   }
 }
