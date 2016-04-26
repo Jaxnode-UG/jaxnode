@@ -1,4 +1,4 @@
-FROM node:5.10.0
+FROM node:6.0.0
 
 COPY package.json package.json  
 RUN npm install
