@@ -1,8 +1,11 @@
 FROM node:6.1.0
 
-COPY package.json package.json  
+RUN mkdir /src
+WORKDIR /src
+
+COPY package.json /src  
 RUN npm install
 
 # Add your source files
-COPY . .  
+COPY . /src
 CMD ["npm","start"] 
