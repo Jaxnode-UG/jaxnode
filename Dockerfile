@@ -1,11 +1,11 @@
-FROM node:6.1.0
+FROM node:6.2.1
 
 RUN mkdir /src
-WORKDIR /src
 
-COPY package.json /src  
+COPY package.json /src
+WORKDIR /src 
 RUN npm install
 
 # Add your source files
-COPY . /src
+COPY . /src  
 CMD ["npm","start"] 

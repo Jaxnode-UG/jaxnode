@@ -1,5 +1,12 @@
 [
     {
+        "name": "Digital Ocean",
+        "url": "https://www.digitalocean.com/?refcode=9b3a8d1b6e65",
+		"alt": "Digital Ocean",
+        "imagepath": "images/digitalocean-logo-color.png",
+        "message": "If you click through this link, you will get $10 in free credits for Digital Ocean hosting!"
+    },
+    {
         "name": "Pebble",
         "url": "https://getpebble.com",
 		"alt": "Pebble, #MakeAwesomeHappen",
