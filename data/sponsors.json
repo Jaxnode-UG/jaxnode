@@ -20,6 +20,13 @@
         "imagepath": "images/interactiveresources.png",
         "message": "IR is a recruiting company that pays for our food each month. If you are looking switch jobs or find talent, contact Interactive Resources."
     },
+    {
+        "name": "The CSI Companies",
+		"url": "http://thecsicompanies.com/",
+		"alt": "The CSI Companies",
+        "imagepath": "images/csilogo.png",
+        "message": "Solving Your Toughest IT Challenges. The CSI companies sponsor our BeerJS meetups."
+    },
 	{
 		"name": "Jax Tech Meetups",
 		"url": "http://jaxtechmeetups.com",

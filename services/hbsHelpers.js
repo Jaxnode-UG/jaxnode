@@ -20,9 +20,9 @@ function addHBSHelpers(Handlebars) {
     Handlebars.registerHelper('currentVersion', function () {
         return new Handlebars.SafeString(pkg.version);
     });
-    
-    Handlebars.registerHelper('nodeVersion', function () {
-        return new Handlebars.SafeString('Running on Node ' + process.version);
+
+    Handlebars.registerHelper('nodeVersionBug', function () {
+        return new Handlebars.SafeString('<a target="_blank" href="https://nodejs.org"><image src="https://img.shields.io/badge/node-' + process.version + '-brightgreen.svg" alt="Running on Node ' + process.version + '" /></a>');
     });
 }
 
