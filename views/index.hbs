@@ -9,21 +9,7 @@
 </style>
 
 {{#if displayCodeOnTheBeach}}
-<div class="row">
-    <div class="col-md-12">
-        <div id="confAlert" class="alert alert-info alert-dismissible .fade" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <img alt="Code On The Beach Logo" src="https://www.codeonthebeach.com/img/logo.png" class="img-responsive" />
-            <h1>Registration Now Open!</h1>
-            <h3>August 12 - 14, 2016</h3>
 
-            <p>Sun. Water. Sand. Code. A weekend at Code on the Beach will take you out of the office and into an oceanside retreat full of educational sessions, beach games, umbrella drinks, and relaxation. Registration is now open for <strong>Code On The Beach</strong></p>
-            <p>
-                <a href="https://www.codeonthebeach.com/register/NewRegistration" class="alert-link">Click here to register.</a>
-            </p>
-        </div>    
-    </div>
-</div>
 {{/if}}
 
 <div class="col-md-8">
@@ -128,25 +114,6 @@
         google.maps.event.addDomListener(window, 'load', initialize);
     {{/if}}
         $('#meeting-description img').addClass('img-responsive');
-        
-        setTimeout(closeAlert, 10000);
-        
-        function closeAlert() {
-            $('#confAlert').alert('close');
-        }
-        
-        $('#confAlert').on('closed.bs.alert', function () {
-            doOnce();
-        });
-        
-        function doOnce() {
-            if (document.cookie.replace(/(?:(?:^|.*;\s*)doCodeOnTheBeachOnlyOnce\s*\=\s*([^;]*).*$)|^.*$/, "$1") !== "true") {
-                var expireDate = new Date();
-                expireDate.setDate(expireDate.getDate() + 7);
-                document.cookie = "doCodeOnTheBeachOnlyOnce=true; expires=" + expireDate;
-            }
-        }
-        
   </script>
   {{/if}}
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>

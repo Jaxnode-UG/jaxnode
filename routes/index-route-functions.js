@@ -32,18 +32,13 @@ exports.index = function index(req, res) {
                         var displayMap = Object.keys(meetingArray.venue).length !== 0;
                     }
                     var displayTweets = tweetResults.tweets.length !== 0;
-                    var displayCodeOnTheBeach = true;
-                    if (req.cookies.doCodeOnTheBeachOnlyOnce === 'true') {
-                        displayCodeOnTheBeach = false;
-                    }
                     res.render('index', {
                         title: 'JaxNode User Group',
                         meeting: meetingArray,
                         tweets: tweetResults.tweets,
                         displayMeetup: displayMeetup,
                         displayMap: displayMap,
-                        displayTweets: displayTweets,
-                        displayCodeOnTheBeach: displayCodeOnTheBeach
+                        displayTweets: displayTweets
                     });
                 }
             });
