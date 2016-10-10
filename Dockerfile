@@ -1,4 +1,4 @@
-FROM node:6.4.0
+FROM node:6.7.0
 
 RUN mkdir /src
 
@@ -8,4 +8,4 @@ RUN npm install
 
 # Add your source files
 COPY . /src  
-CMD ["npm","start"] 
+# CMD ["npm","start"] 
