@@ -27,9 +27,11 @@ exports.index = function index(req, res) {
                         }
                     });
                 } else {
-                    var displayMeetup = Object.keys(meetingArray).length !== 0;
-                    if (displayMeetup && meetingArray.hasOwnProperty('venue')) {
-                        var displayMap = Object.keys(meetingArray.venue).length !== 0;
+                    if (meetingArray) {
+                        var displayMeetup = Object.keys(meetingArray).length !== 0;
+                        if (displayMeetup && meetingArray.hasOwnProperty('venue')) {
+                            var displayMap = Object.keys(meetingArray.venue).length !== 0;
+                        }
                     }
                     var displayTweets = tweetResults.tweets.length !== 0;
                     res.render('index', {

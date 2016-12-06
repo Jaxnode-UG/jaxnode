@@ -5,6 +5,27 @@
         "githuburl": "https://github.com/davidfekke/jaxnodenext",
         "npmname": "jaxnodenext",
         "howtoinstall": "npm install -g jaxnodenext",
+        "installurl": "https://www.npmjs.com/package/jaxnodenext",
         "heroimage": "https://raw.githubusercontent.com/davidfekke/jaxnodenext/master/jaxnodesnap.png"
+    },
+    {
+        "title": "JaxNode iPhone",
+        "description": "An iOS application for the JaxNode user group",
+        "githuburl": "https://github.com/davidfekke/jnmobile",
+        "npmname": "",
+        "howtoinstall": "Go to the link above to the iTunes App Store",
+        "installurl": "https://itunes.apple.com/us/app/jaxnode/id1183086193?ls=1&mt=8",
+        "heroimage": "/images/JaxNodeFeatureGraphic.png",
+        "displayappstore": true
+    },
+    {
+        "title": "JaxNode Android",
+        "description": "An Android application for the JaxNode user group",
+        "githuburl": "https://github.com/davidfekke/jnmobile",
+        "npmname": "",
+        "installurl": "https://play.google.com/store/apps/details?id=com.fekke.jnmobile",
+        "howtoinstall": "Go to the link above to the Google Play store",
+        "heroimage": "/images/JaxNodeFeatureGraphic.png",
+        "displaygoogleplay": true
     }
 ]

@@ -13,11 +13,21 @@
     </p>
     <h4>How to install</h4>
     <p>
+        {{#if data.displayappstore}}
+            <a href="{{data.installurl}}" target="_blank" data-popup="true">
+                <img src="/images/apple.png+@2x.png" alt="iTunes App Store" class="img-responsive" />
+            </a>
+        {{/if}}
+        {{#if data.displaygoogleplay}}
+            <a href="{{data.installurl}}" target="_blank" data-popup="true">
+                <img src="/images/google.png+@2x.png" alt="Google Play Store" class="img-responsive" />
+            </a>
+        {{/if}}
+        Install {{title}} by going to this <a href="{{data.installurl}}" target="_blank" data-popup="true">page</a>.
+    </p>
+    <p>
         <blockquote>
-             {{data.howtoinstall}}     
+            {{data.howtoinstall}}
         </blockquote>
     </p>
-    
 </div>
-
-

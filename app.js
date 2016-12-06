@@ -13,6 +13,7 @@ var service = servicefactory(meetupdata, twitterdata);
 
 var routes = require('./routes/index');
 var routesForApps = require('./routes/appsroutes');
+var routesForApis = require('./routes/apiroutes');
 
 var app = express();
 
@@ -39,6 +40,7 @@ var exposeService = function (req, resp, next) {
 
 app.use('/', exposeService, routes);
 app.use('/apps', routesForApps);
+app.use('/v1/api', exposeService, routesForApis);
 
 // catch 404 and forward to error handler
 app.use(function (req, res) {
