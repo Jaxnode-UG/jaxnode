@@ -110,6 +110,24 @@ describe('Routes', function () {
         });
     });
 
+    describe('GET Privacy Policy', function () {
+        it('responds to /privacy', function testPrivacy(done) {
+            request(app)
+                .get('/privacy')
+                .expect('Content-Type', /text\/html/)
+                .expect(200, done);
+        });
+    });
+
+    describe('GET Terms and Conditions', function () {
+        it('responds to /terms', function testTerms(done) {
+            request(app)
+                .get('/terms')
+                .expect('Content-Type', /text\/html/)
+                .expect(200, done);
+        });
+    });
+
     describe('GET App NonExistent', function () {
         it('responds to /Apps/NonExistent', function testAppJaxNodeNext(done) {
             request(app)

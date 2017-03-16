@@ -16,6 +16,28 @@
 {{/if}}
 
 <div class="col-md-8">
+    {{#if displayMeetup}}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>Next meeting:&nbsp;<strong>{{meeting.name}}</strong><!-- moment(meetingArray[0].time).subtract('hours', 4).format('lll')--></h3>
+            <div>{{meeting.time}}</div>
+            <a href='{{meeting.event_url}}' data-event='{{meeting.id}}' class='mu-rsvp-btn'><img src="images/rsvp_btn.png" alt="RSVP"></a>
+        </div>
+        <div class="panel-body" id="meeting-description">
+            <div>
+                {{{meeting.description}}}
+            </div>
+            {{#if displayMap}}
+            <div id="map-canvas" class="pull-left"></div>
+            <div id="addressWell" class="well well-lg pull-left">
+                {{meeting.venue.name}}<br>
+                {{meeting.venue.address_1}}<br />
+                {{meeting.venue.city}}, {{meeting.venue.state}} {{meeting.venue.zip}}
+            </div>
+            {{/if}}
+        </div>
+    </div>
+    {{/if}}
     <div class="jumbotron">
         <div class="text-center vertical-center">
             <div class="col-md-4">
@@ -73,30 +95,7 @@
         </div>
         
     </div>
-    {{#if displayMeetup}}
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3>Next meeting:&nbsp;<strong>{{meeting.name}}</strong><!-- moment(meetingArray[0].time).subtract('hours', 4).format('lll')--></h3>
-            <div>{{meeting.time}}</div>
-            <a href='{{meeting.event_url}}' data-event='{{meeting.id}}' class='mu-rsvp-btn'><img src="images/rsvp_btn.png" alt="RSVP"></a>
-        </div>
-        <div class="panel-body" id="meeting-description">
-            <div>
-                {{{meeting.description}}}
-            </div>
-            {{#if displayMap}}
-            <div id="map-canvas" class="pull-left"></div>
-            <div id="addressWell" class="well well-lg pull-left">
-                {{meeting.venue.name}}<br>
-                {{meeting.venue.address_1}}<br />
-                {{meeting.venue.city}}, {{meeting.venue.state}} {{meeting.venue.zip}}
-            </div>
-            {{/if}}
-        </div>
-    </div>
-    <br>
-    <small></small>
-    {{/if}}
+    
 </div>
 <div class="col-md-4">
     {{#if displayTweets}}

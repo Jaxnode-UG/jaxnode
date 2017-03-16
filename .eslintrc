@@ -47,10 +47,6 @@
       2,
       "always"
     ],
-    "space-after-keywords": [
-      2,
-      "always"
-    ],
     "space-before-function-paren": [
       2,
       {
@@ -94,13 +90,12 @@
     "no-alert": 2,
     "no-caller": 2,
     "no-console": 0,
-    "no-empty-label": 2,
+    "no-labels": 2,
     "no-extend-native": 2,
     "no-extra-bind": 2,
     "no-implied-eval": 2,
     "no-iterator": 2,
     "no-label-var": 2,
-    "no-labels": 2,
     "no-lone-blocks": 2,
     "no-loop-func": 2,
     "no-multi-spaces": 2,
@@ -135,7 +130,6 @@
         "before": false,
         "after": true
       }
-    ],
-    "space-return-throw-case": 2
+    ]
   }
 }
