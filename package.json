@@ -1,6 +1,6 @@
 {
   "name": "jaxnode",
-  "version": "2.9.0",
+  "version": "2.9.1",
   "private": true,
   "main": "./bin/www",
   "scripts": {
@@ -37,6 +37,6 @@
     "supertest": "^1.1.0"
   },
   "engines": {
-    "node": "7.7.3"
+    "node": "7.8.0"
   }
 }
