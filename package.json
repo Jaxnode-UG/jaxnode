@@ -1,6 +1,6 @@
 {
   "name": "jaxnode",
-  "version": "2.9.1",
+  "version": "2.9.2",
   "private": true,
   "main": "./bin/www",
   "scripts": {
@@ -37,6 +37,7 @@
     "supertest": "^1.1.0"
   },
   "engines": {
-    "node": "8.1.4"
-  }
+    "node": "8.2.0"
+  },
+  "license": "Apache-2.0"
 }

@@ -6,8 +6,8 @@ This is the source code for the JaxNode website.
 
 [![Build Status](https://travis-ci.org/davidfekke/jaxnode.svg?branch=release)](https://travis-ci.org/davidfekke/jaxnode)
 [![Coverage Status](https://coveralls.io/repos/davidfekke/jaxnode/badge.svg?branch=master&service=github)](https://coveralls.io/github/davidfekke/jaxnode?branch=master)
-[![Node v8](http://img.shields.io/badge/node-v8.1.4-brightgreen.svg)](https://nodejs.org)
-[![Node v6](http://img.shields.io/badge/node-v6.11.0-brightgreen.svg)](https://nodejs.org)
+[![Node v8](http://img.shields.io/badge/node-v8.2.0-brightgreen.svg)](https://nodejs.org)
+[![Node v6](http://img.shields.io/badge/node-v6.11.1-brightgreen.svg)](https://nodejs.org)
 
 The website can be viewed at [https://www.jaxnode.com](https://www.jaxnode.com).
 
@@ -20,6 +20,6 @@ They are as follows;
 * process.env.twitter_atk = Twitter access_token_key
 * process.env.twitter_ats = Twitter access_token_secret
 
-Moved site to Heroku. Upgraded to Node.js v8.1.4.
+Moved site to Heroku. Upgraded to Node.js v8.2.0.
 
 Copyright 2017 David Fekke

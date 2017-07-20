@@ -2,7 +2,7 @@ FROM alpine:3.6
 
 RUN apk add --update nodejs-npm
 
-ENV VERSION=v8.1.4 NPM_VERSION=5 YARN_VERSION=latest
+ENV VERSION=v8.2.0 NPM_VERSION=5 YARN_VERSION=latest
 
 # For base builds
 ENV CONFIG_FLAGS="--fully-static --without-npm" DEL_PKGS="libstdc++" RM_DIRS=/usr/include
