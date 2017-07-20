@@ -1,0 +1,9 @@
+{
+    "env": {
+        "meetupapi_key": "@meetupapi_key",
+        "twitter_atk": "@twitter_atk",
+        "twitter_ats": "@twitter_ats",
+        "twitter_ck": "@twitter_ck",
+        "twitter_cs": "@twitter_cs"
+    }
+}
