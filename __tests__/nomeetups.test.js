@@ -9,7 +9,7 @@ var routes = require('../routes/index');
 var routesForApps = require('../routes/appsroutes');
 
 var twitterdata = require('../fakes/twitterfake.js');
-var meetupdata = require('../fakes/meetupfakenovenue.js');
+var meetupdata = require('../fakes/nomeetupfake.js');
 var githubData = require('../fakes/githubfake.js');
 var servicefactory = require('../services/jaxnode-service.js');
 var service = servicefactory(meetupdata, twitterdata);
@@ -43,14 +43,15 @@ var testCookie = function (req, resp, next) {
 app.use('/', exposeService, testCookie, routes);
 app.use('/apps', routesForApps);
 
-describe('Routes', function () {
+describe('Test Route with no upcoming meetups', function () {
 
     describe('GET Index', function () {
-        it('responds to /', function testHomepage(done) {
-            request(app)
-                .get('/')
-                .expect('Content-Type', /text\/html/)
-                .expect(200, done);
+        test('responds to /', function testHomepage(done) {
+            request(app).get('/').then(response => {
+                expect(response.header['content-type']).toBe('text/html; charset=utf-8');
+                expect(response.statusCode).toBe(500);
+                done();
+            });
         });
     });
 

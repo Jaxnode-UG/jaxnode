@@ -70,8 +70,9 @@ var results = { repos:
        watchers: 0,
        default_branch: 'master' } ] };
        
-function getCode(cb) {
-    cb(true, results);
+async function getCode() {
+    //cb(true, results);
+    throw Error('No Github results could be returned');
 };
 
 module.exports = getCode;

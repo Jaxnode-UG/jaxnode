@@ -1,9 +1,9 @@
 /*eslint-disable*/
 'use strict';
 
-function getFeed(cb) {
+async function getFeed() {
 	 var error = true;
-	 var results = { tweets: 
+	 var results = await { tweets: 
    [ { text: 'Node.js Foundation: Our security process is \'top notch\' <a href="https://t.co/adlVIso1vq">https://t.co/adlVIso1vq</a> via <a href="https://twitter.com/infoworld">@infoworld</a>',
        icon: 'http://pbs.twimg.com/profile_images/378800000793404283/ec790ccec0875f4a8283fe7eb00b0776_normal.png',
        name: 'jaxnode' },
@@ -64,7 +64,8 @@ function getFeed(cb) {
      { text: 'Hunting a Ghost - Finding a Memory Leak in Node.js <a href="https://t.co/0C5Rlou0CN">https://t.co/0C5Rlou0CN</a> via <a href="https://twitter.com/RisingStack">@RisingStack</a>',
        icon: 'http://pbs.twimg.com/profile_images/378800000793404283/ec790ccec0875f4a8283fe7eb00b0776_normal.png',
        name: 'jaxnode' } ] };
-	 cb(error, results);
+   //cb(error, results);
+   throw Error('Cound not retreive Twitter data!');
 };
  
 module.exports = getFeed;

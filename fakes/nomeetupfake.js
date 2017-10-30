@@ -1,10 +1,11 @@
 /*eslint-disable*/
 'use strict';
 
-function getNextMeetup(cb) {
+async function getNextMeetup() {
 	var err = false;
-	var results = undefined;
-	 cb(err, results);
+	var results = await undefined;
+	throw Error('No meetup was defined');
+	//return cb(err, results);
 };
 
 module.exports = getNextMeetup;

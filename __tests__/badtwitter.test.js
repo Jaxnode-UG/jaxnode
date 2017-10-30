@@ -6,13 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('../routes/index');
-var routesForApps = require('../routes/appsroutes');
 
-var twitterdata = require('../fakes/twitterfake.js');
-var meetupdata = require('../fakes/nomeetupfake.js');
-var githubData = require('../fakes/githubfake.js');
+var twittererrordata = require('../fakes/twittererrorfake.js');
+var meetupfake = require('../fakes/meetupfake.js');
+var githubData = require('../fakes/githuberrorfake.js');
 var servicefactory = require('../services/jaxnode-service.js');
-var service = servicefactory(meetupdata, twitterdata);
+var service = servicefactory(meetupfake, twittererrordata);
 var path = require('path');
 
 var app = express();
@@ -29,28 +28,25 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-var exposeService = function (req, resp, next) {
-    req.service = service;
-    req.getCode = githubData;
-    next();
-};
+describe('Routes with bad Twitter', function () {
 
-var testCookie = function (req, resp, next) {
-    req.cookies.doCodeOnTheBeachOnlyOnce = 'false';
-    next();
-};
+    beforeEach(() => {
+        var exposeService2 = function (req, resp, next) {
+            req.service = service;
+            req.getCode = githubData;
+            next();
+        };
 
-app.use('/', exposeService, testCookie, routes);
-app.use('/apps', routesForApps);
-
-describe('Test Route with no upcoming meetups', function () {
+        app.use('/', exposeService2, routes);
+    });
 
     describe('GET Index', function () {
-        it('responds to /', function testHomepage(done) {
-            request(app)
-                .get('/')
-                .expect('Content-Type', /text\/html/)
-                .expect(200, done);
+        test('responds to /', function testHomepage(done) {
+            request(app).get('/').then(response => {
+                expect(response.header['content-type']).toBe('text/html; charset=utf-8');
+                expect(response.statusCode).toBe(500);
+                done();
+            });
         });
     });
 

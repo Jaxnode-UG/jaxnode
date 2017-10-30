@@ -70,8 +70,11 @@ var results = { repos:
        watchers: 0,
        default_branch: 'master' } ] };
        
-function getCode(cb) {
-    cb(null, results);
+function getCode() {
+    return new Promise((resolve, reject) => {
+        resolve(results);
+    });
+    //cb(null, results);
 };
 
 module.exports = getCode;

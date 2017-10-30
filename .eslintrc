@@ -1,6 +1,10 @@
 {
   "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
   "env": {
+    "es6": true,
     "node": true,
     "mocha": true
   },
@@ -124,6 +128,7 @@
     "no-spaced-func": 2,
     "no-trailing-spaces": 2,
     "semi": 2,
+    "no-useless-escape": 0,
     "semi-spacing": [
       2,
       {

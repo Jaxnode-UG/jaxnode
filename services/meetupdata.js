@@ -1,9 +1,10 @@
 'use strict';
 
-var https = require('https');
-var nextMeeting = '';
-var cache = require('memory-cache');
-var moment = require('moment-timezone');
+//var https = require('https');
+//var nextMeeting = '';
+const fetch = require('node-fetch');
+const cache = require('memory-cache');
+const moment = require('moment-timezone');
 
 /*
  * Set up http options for the Meetup API.
@@ -25,6 +26,49 @@ function setTimeToNewYork(meetingArray) {
     }
 }
 
+/*
+ * This is the third method used for retrieving the next meetup. It uses Node 8's async and await syntax.
+ */
+async function getNextMeetupV3() {
+    const meetingCache = cache.get('nextMeeting');
+    if (meetingCache) {
+        return meetingCache[0];
+    } else {
+        const response = await fetch('https://api.meetup.com/2/events?&sign=true&group_id=10250862&page=20&key=' + process.env.meetupapi_key);
+        const json = await response.json();
+        const meetingArray = json.results;
+        setTimeToNewYork(meetingArray);
+        cache.put('nextMeeting', meetingArray, 3600000);
+        return meetingArray[0];    
+    }
+}
+
+/*
+ * This is the second method used for retrieving the next meetup. It used a Promise.
+ */
+function getNextMeetupV2() {
+    return new Promise((resolve, reject) => {
+        const meetingCache = cache.get('nextMeeting');
+        if (meetingCache) {
+            resolve(meetingCache[0]);
+        } else {
+            fetch('https://api.meetup.com/2/events?&sign=true&group_id=10250862&page=20&key=' + process.env.meetupapi_key).then(response => {
+                return response.json();
+            }).then(json => {
+                const meetingArray = json.results;
+                setTimeToNewYork(meetingArray);
+                cache.put('nextMeeting', meetingArray, 3600000);
+                resolve(meetingArray[0]);
+            }).catch(err => {
+                reject(err);
+            });
+        }
+    });
+}
+
+/*
+ * This is the original method used for retrieving the next meetup. It used a error first callback
+ */
 function getNextMeetup(cb) {
     var sreq = https.request(httpsOptions, function (response) {
         response.setEncoding('utf8');
@@ -58,4 +102,6 @@ function getNextMeetup(cb) {
     sreq.end();
 }
 
-module.exports = getNextMeetup;
+// module.exports = getNextMeetup;
+// module.exports = getNextMeetupV2;
+module.exports = getNextMeetupV3;

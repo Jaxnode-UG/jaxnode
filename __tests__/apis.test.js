@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 describe('API Routes', function () {
 
-    before(function () {
+    beforeEach(() => {
         var exposeService = function (req, resp, next) {
             req.service = service;
             req.getCode = githubData;
@@ -36,29 +36,32 @@ describe('API Routes', function () {
     });
 
     describe('GET Meeting', function () {
-        it('responds to /v1/api/meeting', function testApi(done) {
-            request(app)
-                .get('/v1/api/meeting')
-                .expect('Content-Type', /application\/json/)
-                .expect(200, done);
+        test('responds to /v1/api/meeting', function testApi(done) {
+            request(app).get('/v1/api/meeting').then(response => {
+                expect(response.header['content-type']).toBe('application/json; charset=utf-8');
+                expect(response.statusCode).toBe(200);
+                done();
+            });
         });
     });
 
     describe('GET Sponsor', function () {
-        it('responds to /v1/api/sponsors', function testApi(done) {
-            request(app)
-                .get('/v1/api/sponsors')
-                .expect('Content-Type', /application\/json/)
-                .expect(200, done);
+        test('responds to /v1/api/sponsors', function testApi(done) {
+            request(app).get('/v1/api/sponsors').then(response => {
+                expect(response.header['content-type']).toBe('application/json; charset=utf-8');
+                expect(response.statusCode).toBe(200);
+                done();
+            });
         });
     });
 
     describe('GET Github', function () {
-        it('responds to /v1/api/github', function testApi(done) {
-            request(app)
-                .get('/v1/api/github')
-                .expect('Content-Type', /application\/json/)
-                .expect(200, done);
+        test('responds to /v1/api/github', function testApi(done) {
+            request(app).get('/v1/api/github').then(response => {
+                expect(response.header['content-type']).toBe('application/json; charset=utf-8');
+                expect(response.statusCode).toBe(200);
+                done();
+            });
         });
     });
 

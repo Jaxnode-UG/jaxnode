@@ -2,7 +2,6 @@
 
 var cache = require('memory-cache');
 var twitter = require('twitter');
-var async = require('async');
 
 /*
  * Set up options for the Twitter API.
@@ -19,24 +18,22 @@ var twit = new twitter({
 /*
  * Method used to format Twitter text using Regex.
  */
-function gatherTweets(item, callback) {
+function formatTweets(item) {
     var resultText = item.text.replace(/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/, '<a href="$1">$1</a>');
     var twitterText = resultText.replace(/@(\w+)/, '<a href="https://twitter.com/$1">@$1</a>');
-    callback(null, { text: twitterText, icon: item.user.profile_image_url, name: item.user.screen_name });
+    return { text: twitterText, icon: item.user.profile_image_url, name: item.user.screen_name };
 }
 
-function getFeed(cb) {
+async function getFeed() {
     var cTweets = cache.get('Tweets');
     if (cTweets !== null) {
-        cb(null, { tweets: cTweets });
+        return { tweets: cTweets };
     } else {
-        var params = {include_entities: true}; // eslint-disable-line
-        twit.get('/statuses/user_timeline', params, function (err, data) {
-            async.map(data, gatherTweets, function (err2, results) {
-                cache.put('Tweets', results, 3600000);
-                cb(null, { tweets: results });
-            });
-        });
+        const params = {include_entities: true}; // eslint-disable-line
+        const data = await twit.get('/statuses/user_timeline', params);
+        const results = data.map(formatTweets);
+        cache.put('Tweets', results, 3600000);
+        return { tweets: results };
     }
 }
 

@@ -13,6 +13,6 @@ router.get('/terms', termRoutes.terms);
 router.get('/privacy', termRoutes.privacy);
 router.get('/sponsors', sponsors.list);
 router.get('/api', indexRoutes.api);
-router.get('/code', indexRoutes.code);
+router.get('/code/:page?', indexRoutes.code);
 
 module.exports = router;

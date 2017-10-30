@@ -1,7 +1,7 @@
 /*eslint-disable*/
 'use strict';
 
-function getNextMeetup(cb) {
+function getNextMeetup() {
 	var err = false;
 	var results = { utc_offset: -18000000,
 				venue: 
@@ -37,7 +37,10 @@ function getNextMeetup(cb) {
 					who: 'Noders' },
 				status: 'upcoming' 
 			};
-	 cb(err, results);
+	 //cb(err, results);
+	 return new Promise((resolve, reject) => {
+		 resolve(results);
+	 });
 };
 
 module.exports = getNextMeetup;
