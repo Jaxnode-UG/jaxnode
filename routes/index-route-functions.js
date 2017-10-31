@@ -42,7 +42,17 @@ exports.code = async function code(req, res) {
         const sortedRepos = resp.repos.sort(nameCompare);
         const repopage = sortedRepos.slice(parseInt(pagenum) * 10, parseInt(pagenum) * 10 + 10);
         const pageCount = Math.ceil(sortedRepos.length / 10);
-        res.render('code', { title: 'Jax Node GitHub code', repos: repopage, currPage: pagenum, pageCount: pageCount });
+        if (pagenum > pageCount - 1) {
+            res.status(404).render('error', {
+                message: 'This github page does not exist',
+                error: {
+                    status: '404',
+                    stack: 'This github page does not exist.'
+                }
+            });
+        } else {
+            res.render('code', { title: 'Jax Node GitHub code', repos: repopage, currPage: pagenum, pageCount: pageCount });    
+        }
     } catch (err) {
         console.log('problem with request: ' + err);
         res.status(500).render('error', {

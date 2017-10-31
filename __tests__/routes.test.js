@@ -92,6 +92,26 @@ describe('Routes', function () {
         });
     });
     
+    describe('GET Code with Page', function () {
+        test('responds to /Code/2', function testCode(done) {
+            request(app).get('/Code/2').then((response) => {
+                expect(response.header['content-type']).toBe('text/html; charset=utf-8');
+                expect(response.statusCode).toBe(200);
+                done();
+            });
+        });
+    });
+    
+    describe('GET Code with Page', function () {
+        test('responds to /Code/4', function testCode(done) {
+            request(app).get('/Code/4').then((response) => {
+                expect(response.header['content-type']).toBe('text/html; charset=utf-8');
+                expect(response.statusCode).toBe(404);
+                done();
+            });
+        });
+    });
+    
     describe('GET Api', function () {
         test('responds to /api', function testApi(done) {
             request(app).get('/api').then(response => {
