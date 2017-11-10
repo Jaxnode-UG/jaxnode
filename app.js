@@ -1,24 +1,24 @@
 'use strict';
-var express = require('express');
-var twitterdata = require('./services/twitterdata.js');
-var meetupdata = require('./services/meetupdata.js');
-var githubData = require('./services/githubdata.js');
-var path = require('path');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var servicefactory = require('./services/jaxnode-service.js');
+const express = require('express');
+const twitterdata = require('./services/twitterdata.js');
+const meetupdata = require('./services/meetupdata.js');
+const githubData = require('./services/githubdata.js');
+const path = require('path');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const servicefactory = require('./services/jaxnode-service.js');
 
-var service = servicefactory(meetupdata, twitterdata);
+const service = servicefactory(meetupdata, twitterdata);
 
-var routes = require('./routes/index');
-var routesForApps = require('./routes/appsroutes');
-var routesForApis = require('./routes/apiroutes');
+const routes = require('./routes/index');
+const routesForApps = require('./routes/appsroutes');
+const routesForApis = require('./routes/apiroutes');
 
-var app = express();
+const app = express();
 
 // view engine setup
-var hbs = require('express-hbs');
+const hbs = require('express-hbs');
 require('./services/hbsHelpers.js')(hbs);
 
 // Use `.hbs` for extensions and find partials in `views/partials`.
@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-var exposeService = function (req, resp, next) {
+const exposeService = function (req, resp, next) {
     req.service = service;
     req.getCode = githubData;
     next();

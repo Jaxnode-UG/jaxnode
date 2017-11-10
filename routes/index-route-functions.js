@@ -33,7 +33,7 @@ exports.index = async function index(req, res) {
 };
 
 exports.code = async function code(req, res) {
-    var pagenum = 0;
+    let pagenum = 0;
     if (req.params.page && !isNaN(req.params.page)) {
         pagenum = req.params.page;
     }

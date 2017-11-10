@@ -6,6 +6,24 @@ const cache = require('memory-cache');
  * Setting up link to GitHub
  */
 
+ async function getGithubReposV2() {
+    const githubcache = cache.get('githubrepos');
+    if (githubcache) {
+        return { repos: githubcache };
+    } else {
+        const response = await fetch('https://api.github.com/orgs/jaxnode-ug/repos',
+            {
+                headers: {
+                    Accept: 'application/vnd.github.v3+json',
+                    'User-Agent': 'JaxNode'
+                }
+            });
+        const json = await response.json();
+        cache.put('githubrepos', json, 3600000);
+        return { repos: json };
+    }
+ }
+ 
 /*
  * Replaced Callback function with one that returns a Promise.
  * Now this function can be used with async/await syntax
@@ -36,4 +54,4 @@ function getGithubRepos() {
 }
 
 //module.exports = getCode;
-module.exports = getGithubRepos;
+module.exports = getGithubReposV2;

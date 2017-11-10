@@ -28,19 +28,27 @@ function addHBSHelpers(Handlebars) {
     Handlebars.registerHelper('pager', function (currentPage, totalpages) {
         const currPage = parseInt(currentPage);
         const total = parseInt(totalpages);
-        var previous = '';
-        var next = '';
-        var pagelinks = '';
+        let previous = '';
+        let next = '';
+        let pagelinks = '';
         if (currPage === 0) {
             previous = new Handlebars.SafeString('<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>');
         } else {
-            previous = new Handlebars.SafeString('<li class="page-item"><a class="page-link" href="/code/' + (currPage - 1) + '">Previous</a></li>');
+            if ((currPage - 1) === 0) {
+                previous = new Handlebars.SafeString('<li class="page-item"><a class="page-link" href="/code">Previous</a></li>');
+            } else {
+                previous = new Handlebars.SafeString('<li class="page-item"><a class="page-link" href="/code/' + (currPage - 1) + '">Previous</a></li>');
+            }
         }
         for (let i = 0; i < total; i++) {
             if (i === currPage) {
                 pagelinks += new Handlebars.SafeString('<li class="page-item disabled"><a class="page-link" href="#">' + (i + 1) + '</a></li>');
             } else {
-                pagelinks += new Handlebars.SafeString('<li class="page-item"><a class="page-link" href="/code/' + i + '">' + (i + 1) + '</a></li>');    
+                if (i === 0) {
+                    pagelinks += new Handlebars.SafeString('<li class="page-item"><a class="page-link" href="/code">' + (i + 1) + '</a></li>');
+                } else {
+                    pagelinks += new Handlebars.SafeString('<li class="page-item"><a class="page-link" href="/code/' + i + '">' + (i + 1) + '</a></li>');
+                }    
             }
         }
         if (currPage === (total - 1)) {
