@@ -1,6 +1,8 @@
 FROM mhart/alpine-node:12.18.4
 
-RUN npm install -g yarn
+RUN npm config set unsafe-perm true \
+    && npm install -g yarn \
+    && npm config set unsafe-perm false 
 
 RUN mkdir /src
 
