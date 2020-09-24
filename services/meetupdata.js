@@ -5,6 +5,7 @@
 const fetch = require('node-fetch');
 const cache = require('memory-cache');
 const moment = require('moment-timezone');
+const nextmeeting = require('../data/nextmeeting.json');
 
 /*
  * Set up http options for the Meetup API.
@@ -102,6 +103,13 @@ function getNextMeetup(cb) {
     sreq.end();
 }
 
+/*
+ * This is the third method used for retrieving the next meetup. It uses Node 8's async and await syntax.
+ */
+async function getNextMeetupV4() {
+    return nextmeeting[0];
+}
+
 // module.exports = getNextMeetup;
 // module.exports = getNextMeetupV2;
-module.exports = getNextMeetupV3;
+module.exports = getNextMeetupV4;

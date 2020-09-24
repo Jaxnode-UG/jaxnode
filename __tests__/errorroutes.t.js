@@ -42,15 +42,15 @@ describe('Routes with bad data', function () {
         app.use('/apps', routesForApps);
     });
     
-    describe('GET Index', function () {
-        test('responds to /', function testHomepage(done) {
-            request(app).get('/').then(response => {
-                expect(response.header['content-type']).toBe('text/html; charset=utf-8');
-                expect(response.statusCode).toBe(500);
-                done();
-            });
-        });
-    });
+    // describe('GET Index', function () {
+    //     test('responds to /', function testHomepage(done) {
+    //         request(app).get('/').then(response => {
+    //             expect(response.header['content-type']).toBe('text/html; charset=utf-8');
+    //             expect(response.statusCode).toBe(500);
+    //             done();
+    //         });
+    //     });
+    // });
 
     describe('GET Code', function () {
         test('responds to /Code', function testCode(done) {

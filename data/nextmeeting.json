@@ -1,0 +1,18 @@
+[
+    {
+        "id": "273380217",
+        "name": "TBD",
+        "time": "Thursday, October 15, 2020",
+        "event_url": "https://www.meetup.com/Jax-Node-js-UG/events/273380217/",
+        "description": "TBD",
+        "venue": {
+                "name": "Online",
+                "address_1": "Details on meetup.com",
+                "city": "Jacksonville",
+                "state": "Fl",
+                "zip": "32256",
+                "lat": "30.2480234",
+                "lon": "-81.524463"
+        }
+    }
+]

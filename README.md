@@ -6,8 +6,8 @@ This is the source code for the JaxNode website.
 
 [![Build Status](https://travis-ci.org/davidfekke/jaxnode.svg?branch=release)](https://travis-ci.org/davidfekke/jaxnode)
 [![Coverage Status](https://coveralls.io/repos/github/davidfekke/jaxnode/badge.svg?branch=master)](https://coveralls.io/github/davidfekke/jaxnode?branch=master)
-[![Node v8](http://img.shields.io/badge/node-v10.15.1-brightgreen.svg)](https://nodejs.org)
-[![Node v9](http://img.shields.io/badge/node-v11.9.0-brightgreen.svg)](https://nodejs.org)
+[![Node v8](http://img.shields.io/badge/node-v12.18.4-brightgreen.svg)](https://nodejs.org)
+[![Node v9](http://img.shields.io/badge/node-v14.11.0-brightgreen.svg)](https://nodejs.org)
 
 The website can be viewed at [https://www.jaxnode.com](https://www.jaxnode.com).
 
@@ -20,6 +20,8 @@ They are as follows;
 * process.env.twitter_atk = Twitter access_token_key
 * process.env.twitter_ats = Twitter access_token_secret
 
-Upgraded to Node.js v11.9.0. Version 3.0 of this code requires Node.js 8.6 or higher because of the use of async/await.
+Upgraded to Node.js v14.11.0. Version 3.0 of this code requires Node.js 8.6 or higher because of the use of async/await.
 
-Copyright 2019 David Fekke
+Copyright 2020 David Fekke
+
+

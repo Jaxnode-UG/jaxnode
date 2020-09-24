@@ -19,14 +19,16 @@
     {{#if displayMeetup}}
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3>Next meeting:&nbsp;<strong>{{meeting.name}}</strong><!-- moment(meetingArray[0].time).subtract('hours', 4).format('lll')--></h3>
+            <h3>Next meeting:&nbsp;<strong>{{meeting.name}}</strong> </h3>
             <div>{{meeting.time}}</div>
             <a href='{{meeting.event_url}}' data-event='{{meeting.id}}' class='mu-rsvp-btn'><img src="images/rsvp_btn.png" alt="RSVP"></a>
         </div>
         <div class="panel-body" id="meeting-description">
             <div>
-                {{{meeting.description}}}
+                <span style="color: red;">JaxNode normally meets at Availity the third Thursday of the month. Currently all Future meetings will be held online.</span>
+                {{{meeting.description}}} 
             </div>
+            <p>&nbsp;</p>
             {{#if displayMap}}
             <div id="map-canvas" class="pull-left"></div>
             <div id="addressWell" class="well well-lg pull-left">
